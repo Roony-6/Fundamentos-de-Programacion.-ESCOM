@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+//este programa calcula la funcion de ackermann
 int ackermann(int, int);
 
 int main(){
