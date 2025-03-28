@@ -37,6 +37,6 @@ void imprimirArray(int array[],int n){
     }
 }
 
-//void ordenarArray(int array[]){
+void ordenarArray(int array[]){
 
-//}
+}
