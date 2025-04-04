@@ -21,7 +21,7 @@ int main(){
 
 void seleccion(int array[],int n){
     int menor;
-    for(int i=0;i<n-2;i++){
+    for(int i=0;i<n-1;i++){
         menor=i;
         for(int j=i+1;j<n;j++){
             if(array[j]<array[menor]){
