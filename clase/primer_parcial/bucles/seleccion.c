@@ -35,7 +35,6 @@ void seleccion(int array[],int n){
 }
 
 
-
 void ImpArrInt(int a[], int n){
     int i;
     for(i=0;i<n;i++)
