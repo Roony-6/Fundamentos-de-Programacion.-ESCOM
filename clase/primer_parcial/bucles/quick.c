@@ -3,7 +3,7 @@
 #include<time.h>
 void LlenaArrIntAleaIter(int[],int);
 void ImpArrInt(int[],int);
-void particion(int [], int );
+int particion(int [], int );
 void intercambia(int *, int *);
 int main(){
     srand(time(NULL));
@@ -12,18 +12,32 @@ int main(){
     scanf("%d",&n);
     LlenaArrIntAleaIter(array,n);
     ImpArrInt(array,n);
-    seleccion(array,n);
+  
     ImpArrInt(array,n);
 
 
     return 0;
 }
 
-void particion(int a[], int n){
+//funcion para hacer la particion del array
+int particion(int a[], int n){
     int p=0,i=1,d=n-1,t;
     while(i<d){
-        
+        //buscamos el i-esimo elemento tal que a[p]<a[i]
+        while(a[p]>a[i] && (i<d)){
+            i++;}
+        if(i<d){
+            while(a[p]<=a[d]&&(i<d)){
+                d--;
+            }
+        }
+        intercambia(a+i, a+d);
+        i++;
+        d--;
+
     }
+    intercambia(a+p, a+i-1);
+    return i-1;
 
 }
 
