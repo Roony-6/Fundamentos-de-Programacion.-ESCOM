@@ -7,12 +7,14 @@ int particion(int [], int );
 void intercambia(int *, int *);
 int main(){
     srand(time(NULL));
-    int array[100],n;
+    int array[100],n,pivote;
     printf("dame el numero de elementos\n");
     scanf("%d",&n);
     LlenaArrIntAleaIter(array,n);
     ImpArrInt(array,n);
-  
+    pivote=particion(array,n);
+    printf("pivote= %d\n",pivote);
+    puts("-----------------------------\n");
     ImpArrInt(array,n);
 
 
@@ -20,25 +22,19 @@ int main(){
 }
 
 //funcion para hacer la particion del array
-int particion(int a[], int n){
-    int p=0,i=1,d=n-1,t;
-    while(i<d){
-        //buscamos el i-esimo elemento tal que a[p]<a[i]
-        while(a[p]>a[i] && (i<d)){
-            i++;}
-        if(i<d){
-            while(a[p]<=a[d]&&(i<d)){
-                d--;
-            }
-        }
-        intercambia(a+i, a+d);
-        i++;
-        d--;
-
+int particion(int array[], int n){
+    int p=0, i=1, d=n-1;
+    while(i<=d){
+        while((array[p]>array[i])&&(i<=d))
+               i++;
+        while((array[p]<=array[d])&&(i<=d))
+                   d--;
+        if(i<d)
+           intercambia(array+i,array+d);
+       // i++;d--;
     }
-    intercambia(a+p, a+i-1);
+    intercambia(array,array+d);
     return i-1;
-
 }
 
 
