@@ -5,6 +5,8 @@ void LlenaArrIntAleaIter(int[],int);
 void ImpArrInt(int[],int);
 int particion(int [], int );
 void intercambia(int *, int *);
+void quicksort(int[],int);
+
 int main(){
     srand(time(NULL));
     int array[100],n,pivote;
@@ -16,11 +18,22 @@ int main(){
     printf("pivote= %d\n",pivote);
     puts("-----------------------------\n");
     ImpArrInt(array,n);
-
+    quicksort(array,n);
+    ImpArrInt(array,n);
 
     return 0;
 }
+void  quicksort(int array[],int n){
 
+    int pivote;
+    if(n>1){
+        pivote=particion(array,n);
+        quicksort(array,pivote);
+        quicksort(array+pivote+1,n-pivote-1);
+
+    }
+
+}
 //funcion para hacer la particion del array
 int particion(int array[], int n){
     int p=0, i=1, d=n-1;
@@ -36,18 +49,12 @@ int particion(int array[], int n){
     intercambia(array,array+d);
     return i-1;
 }
-
-
-
-
 void ImpArrInt(int a[], int n){
     int i;
     for(i=0;i<n;i++)
         printf("a[%d]=%d\t",i,a[i]);
     putchar('\n');
  }
-
- 
  void LlenaArrIntAleaIter(int a[],int n){
      int i;
      for(i=0;i<n;i++)
@@ -58,3 +65,5 @@ void intercambia(int *a, int *b){
         *a=*b;
         *b=t;
     }
+
+    //recibe un array y num de elementos y devuelve la posicion donde se enciuentra el nuemro menor
