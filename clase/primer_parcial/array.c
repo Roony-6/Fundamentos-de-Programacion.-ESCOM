@@ -7,6 +7,7 @@ int main(){
     printf("Dame una string\n.");
     scanf("%s",p);
     printf("%s tiene  %d caracteres \n",p,NumChars(p));
+    printf("Esto es un pequño cambio");
     return 0;
 }
 
