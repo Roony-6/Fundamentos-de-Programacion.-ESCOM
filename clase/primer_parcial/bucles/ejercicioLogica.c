@@ -7,6 +7,9 @@ int main(){
     Secuencia(n);
     puts("----------------------");
     Secuencia2(n);
+    puts("\nCon Buclws While:");
+    ssecuencia1(n);
+    ssecuencia2(n);
 
     return 0;
 }
@@ -27,4 +30,33 @@ void Secuencia2(int n){
         }
         printf("\n");
     }
+}
+
+void ssecuencia1(int n){
+    int j=1,i=1;
+
+    while(i<=n){
+        j=1;
+        while(j<=n){
+            printf("%d",i);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+
+}
+void ssecuencia2(int n){
+    int j=1,i=1;
+
+    while(i<=n){
+        j=1;
+        while(j<=i){
+            printf("%d",i);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+
 }
