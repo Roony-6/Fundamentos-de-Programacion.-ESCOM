@@ -4,7 +4,7 @@ int main() {
     int numero;
     printf("Introduce un número: ");
     scanf("%d", &numero);
-
+    /*
     if (esPrimo(numero)) {
         printf("%d es un número primo.\n", numero);
     } else {
@@ -15,7 +15,12 @@ int main() {
         printf("%d es un número primo.\n", numero);
     } else {
         printf("%d no es un número primo.\n", numero);
-    }
+    }*/
+   mostranPrimosAnteriores(numero);
+
+
+
+
     return 0;
 }
 
@@ -47,5 +52,16 @@ int esPrimo2(int n){
     }
     else{
         return 0;
+    }
+}
+void mostranPrimosAnteriores(int n){
+
+    if(n<2) printf("El numero debe ser mayor a 2");
+    else{
+    for(int i=2;i<=n;i++){
+        if(esPrimo2(i)){
+            printf("%d ",i);
+        }
+    }
     }
 }
