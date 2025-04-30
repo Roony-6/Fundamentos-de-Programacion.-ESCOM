@@ -60,3 +60,5 @@ void ssecuencia2(int n){
     }
 
 }
+
+//TAREA 

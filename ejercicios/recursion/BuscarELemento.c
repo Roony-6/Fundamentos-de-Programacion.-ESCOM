@@ -67,3 +67,7 @@ void ImpArrInt(int a[], int n){
         printf("a[%d]=%d\t",i,a[i]);
     putchar('\n');
  }
+
+ int es_primo(int n){
+    
+ }
