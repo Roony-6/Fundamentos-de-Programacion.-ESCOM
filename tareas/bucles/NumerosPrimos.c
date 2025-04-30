@@ -17,6 +17,8 @@ int main() {
         printf("%d no es un número primo.\n", numero);
     }*/
    mostranPrimosAnteriores(numero);
+   printf("\nLos factores primos de %d son: \n",numero);
+   imprimirFactoresPrimosN(numero);
 
 
 
@@ -63,5 +65,18 @@ void mostranPrimosAnteriores(int n){
             printf("%d ",i);
         }
     }
+    }
+}
+
+void imprimirFactoresPrimosN(int n){
+
+    if(esPrimo2(n)) printf("%d es un numero primo",n);
+    else{
+        for(int i=2;i<=n;i++){
+            if(n%i==0 && esPrimo2(i)){
+                printf("%d ", i);
+            }
+
+        }
     }
 }
