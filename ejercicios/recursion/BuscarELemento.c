@@ -68,6 +68,3 @@ void ImpArrInt(int a[], int n){
     putchar('\n');
  }
 
- int es_primo(int n){
-    
- }
