@@ -8,10 +8,11 @@ int main(){
         char apellidoM[20];
         int edad;
         float promedio;
-    } alumno1, amlumno2;
+    } alumno1, alumno2={"Juan", "Perez", "Lopez", 20, 8.5};
     printf("Cual es tu nombre, apellidos paterno y materno, edad y promedio?\n");
     scanf("%s%s%s%d%f",alumno1.nombre,alumno1.apellidoP,alumno1.apellidoM,&alumno1.edad,&alumno1.promedio);
     printf("Tu nombre es %s %s %s, tienes %d anios y tu promedio es %.2f\n", alumno1.nombre, alumno1.apellidoP, alumno1.apellidoM, alumno1.edad, alumno1.promedio);
+      printf("Tu nombre es %s %s %s, tienes %d anios y tu promedio es %.2f\n", alumno2.nombre, alumno2.apellidoP, alumno2.apellidoM, alumno2.edad, alumno2.promedio);
     
     
 }
