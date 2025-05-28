@@ -4,7 +4,9 @@ typedef struct Fraccion{
     int numerador;
     int denominador;
 } Fraccion;
-void imprimirFraccion(Fraccion fraccion);
+void imprimirFraccion(Fraccion );
+Fraccion leerFraccion();
+Fraccion mixtaAImpropia(Fraccion );
 int main() {
 
     Fraccion a,b,c;
@@ -13,6 +15,8 @@ int main() {
     printf("Dame una fraccion(coeficiente, numerador, denominador):\n");
     scanf("%d %d %d", &b.coeficiente, &b.numerador, &b.denominador);
     imprimirFraccion(b);
+    c=mixtaAImpropia(b);
+    printf("Fraaccion impropia: %d[%d/%d]\n", c.coeficiente, c.numerador, c.denominador);
 }
 void imprimirFraccion(Fraccion fraccion){
     if (fraccion.coeficiente != 0) {
@@ -44,7 +48,7 @@ int mcd(){
 }
 int rmcd(int a, int b) {
     if(a==b) {
-        return a}
+        return a;}
     else if(a>b) {
         return rmcd(a-b, b);
     } else {
@@ -56,12 +60,13 @@ int mcm(int a, int b) {
 }
 Fraccion mixtaAImpropia(Fraccion mixta) {
     Fraccion propia;
-    if(mixta.denominador == 0) {
-        
-    propia.numerador = mixta.coeficiente * mixta.denominador + mixta.numerador;
-    propia.denominador = mixta.denominador;
-    propia.coeficiente = 0; // La fracción propia no tiene coeficiente
-    
-}
+
+    if(mixta.coeficiente != 0) {
+        propia.numerador = mixta.coeficiente * mixta.denominador + mixta.numerador;
+        propia.coeficiente=0;
+    } else {
+        propia.numerador = mixta.numerador;
+    }
+  
 return propia;
 }
