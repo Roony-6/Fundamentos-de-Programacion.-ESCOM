@@ -70,3 +70,16 @@ Fraccion mixtaAImpropia(Fraccion mixta) {
   
 return propia;
 }
+
+Fraccion ImpropiaAMixta(Fraccion impropia) {
+    Fraccion mixta;
+    if(impropia.numerador >= impropia.denominador) {
+        mixta.coeficiente = impropia.numerador / impropia.denominador;
+        mixta.numerador = impropia.numerador % impropia.denominador;
+    } else {
+        mixta.coeficiente = 0;
+        mixta.numerador = impropia.numerador;
+    }
+    mixta.denominador = impropia.denominador;
+    return mixta;
+}
