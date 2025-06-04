@@ -118,3 +118,11 @@ Fraccion sumaDeFracciones(Fraccion a, Fraccion b) {
     
     return simplificarFraccion(resultado);
 }
+Fraccion restaDeFracciones(Fraccion a, Fraccion b) {
+    Fraccion resultado;
+    resultado.denominador = mcm(a.denominador, b.denominador);
+    resultado.numerador = (a.numerador * (resultado.denominador / a.denominador)) - (b.numerador * (resultado.denominador / b.denominador));
+    resultado.coeficiente = 0; // Asumiendo que la resta da una fracción impropia
+    
+    return simplificarFraccion(resultado);
+}
