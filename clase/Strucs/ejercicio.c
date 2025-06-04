@@ -7,6 +7,13 @@ typedef struct Fraccion{
 void imprimirFraccion(Fraccion );
 Fraccion leerFraccion();
 Fraccion mixtaAImpropia(Fraccion );
+Fraccion simplificarFraccion(Fraccion);
+Fraccion ImpropiaAMixta(Fraccion );
+Fraccion sumaDeFracciones(Fraccion a, Fraccion b);
+int mcd();
+int rmcd(int a, int b);
+int mcm(int a, int b);
+
 int main() {
 
     Fraccion a,b,c;
@@ -17,6 +24,19 @@ int main() {
     imprimirFraccion(b);
     c=mixtaAImpropia(b);
     printf("Fraaccion impropia: %d[%d/%d]\n", c.coeficiente, c.numerador, c.denominador);
+    printf("Fraccion simplificada: %d[%d/%d]\n", simplificarFraccion(c).coeficiente, simplificarFraccion(c).numerador, simplificarFraccion(c).denominador);
+
+    printf("Fraccion mixta: %d[%d/%d]\n", ImpropiaAMixta(c).coeficiente, ImpropiaAMixta(c).numerador, ImpropiaAMixta(c).denominador);
+
+    puts("Dame dos fracciones para sumar:");
+
+    Fraccion fraccion1 = leerFraccion();
+    Fraccion fraccion2 = leerFraccion();
+    printf("la suma de las fracciones es:\n");
+    Fraccion resultado = sumaDeFracciones(fraccion1, fraccion2);
+
+    imprimirFraccion(resultado);
+
 }
 void imprimirFraccion(Fraccion fraccion){
     if (fraccion.coeficiente != 0) {
@@ -82,4 +102,19 @@ Fraccion ImpropiaAMixta(Fraccion impropia) {
     }
     mixta.denominador = impropia.denominador;
     return mixta;
+}
+Fraccion simplificarFraccion(Fraccion fraccion) {
+    Fraccion temp=ImpropiaAMixta(fraccion);
+    int divisor = rmcd(temp.numerador, temp.denominador);
+    temp.numerador /= divisor;
+    temp.denominador /= divisor;
+    return temp;
+}
+Fraccion sumaDeFracciones(Fraccion a, Fraccion b) {
+    Fraccion resultado;
+    resultado.denominador = mcm(a.denominador, b.denominador);
+    resultado.numerador = (a.numerador * (resultado.denominador / a.denominador)) + (b.numerador * (resultado.denominador / b.denominador));
+    resultado.coeficiente = 0; // Asumiendo que la suma da una fracción impropia
+    
+    return simplificarFraccion(resultado);
 }
