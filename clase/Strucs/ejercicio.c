@@ -119,10 +119,43 @@ Fraccion sumaDeFracciones(Fraccion a, Fraccion b) {
     return simplificarFraccion(resultado);
 }
 Fraccion restaDeFracciones(Fraccion a, Fraccion b) {
-    Fraccion resultado;
+    Fraccion resultado; 
     resultado.denominador = mcm(a.denominador, b.denominador);
     resultado.numerador = (a.numerador * (resultado.denominador / a.denominador)) - (b.numerador * (resultado.denominador / b.denominador));
     resultado.coeficiente = 0; // Asumiendo que la resta da una fracción impropia
     
     return simplificarFraccion(resultado);
+}
+Fraccion multiplicacionDeFracciones(Fraccion a, Fraccion b) {
+    Fraccion resultado;
+    resultado.numerador = a.numerador * b.numerador;
+    resultado.denominador = a.denominador * b.denominador;
+    resultado.coeficiente = 0; // Asumiendo que la multiplicación da una fracción impropia
+    
+    return simplificarFraccion(resultado);
+}
+Fraccion divisionDeFraciones(Fraccion a, Fraccion b) {
+    Fraccion resultado;
+    if (b.numerador == 0) {
+        printf("Error: División por cero.\n");
+        resultado.coeficiente = 0;
+        resultado.numerador = 0;
+        resultado.denominador = 1; // Valor por defecto para evitar división por cero
+        return resultado;
+    }
+    
+    resultado.numerador = a.numerador * b.denominador;
+    resultado.denominador = a.denominador * b.numerador;
+    resultado.coeficiente = 0; // Asumiendo que la división da una fracción impropia
+    
+    return simplificarFraccion(resultado);
+}
+Fraccion metodoGaussJordan(Fraccion a, Fraccion b) {
+    // Este método no es aplicable directamente a fracciones, ya que Gauss-Jordan se usa para sistemas de ecuaciones lineales.
+    // Aquí se puede implementar una lógica específica si se desea aplicar a un contexto diferente.
+    Fraccion resultado;
+    resultado.coeficiente = 0;
+    resultado.numerador = 0;
+    resultado.denominador = 1; // Valor por defecto
+    return resultado;
 }
