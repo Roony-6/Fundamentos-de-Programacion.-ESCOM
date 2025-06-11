@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+
 int main(){
     //imprime trianguo de asteriscos
     int n;
