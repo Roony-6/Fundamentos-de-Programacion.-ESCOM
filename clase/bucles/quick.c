@@ -1,69 +1,65 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-void LlenaArrIntAleaIter(int[],int);
-void ImpArrInt(int[],int);
-int particion(int [], int );
-void intercambia(int *, int *);
-void quicksort(int[],int);
+#include <stdio.h>
+#include <stdlib.h>
+
+void quick(int array[], int min, int max){
+    int i = min;
+    int j = max;
+    int temp;
+    int mitad = array[(i + j)/2]; // Pivote: elemento central
+
+    // Particiona el arreglo en dos partes
+    do{
+        while(array[i] < mitad && i < max)
+            i++;
+        while(array[j] > mitad && j > min)
+            j--;
+        if(i <= j){
+            // Intercambia los elementos fuera de lugar
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            i++;
+            j--;
+        }
+    }while(i <= j);
+
+    // Llama recursivamente para las sublistas izquierda y derecha
+    if(min < j)
+        quick(array, min, j);
+    if(i < max)
+        quick(array, i, max);
+}
 
 int main(){
-    srand(time(NULL));
-    int array[100],n,pivote;
-    printf("dame el numero de elementos\n");
-    scanf("%d",&n);
-    LlenaArrIntAleaIter(array,n);
-    ImpArrInt(array,n);
-    pivote=particion(array,n);
-    printf("pivote= %d\n",pivote);
-    puts("-----------------------------\n");
-    ImpArrInt(array,n);
-    quicksort(array,n);
-    ImpArrInt(array,n);
+    int size, a[100], i, j, k;
+
+    printf("De que tamaño quieres el array? ");
+    scanf("%d", &size);
+
+    if(size > 100){
+        printf("El valor maximo es 100 \n");
+    }else{
+        // Lee los elementos del arreglo
+        for(i = 0; i < size; i++){
+            printf("array[%d] = ", i + 1);
+            scanf("%d", &a[i]);
+        }
+    }
+
+    printf("ARRAY ORIGINAL\n");
+    for(j = 0; j < size; j++){
+        printf("%d \n", a[j]);
+    }
+
+    printf("ARRAY ORDENADO \n");
+
+    // Ordena el arreglo usando QuickSort
+    quick(a, 0, size - 1);
+
+    // Imprime el arreglo ordenado
+    for(k = 0; k < size; k++){
+        printf("%d \n", a[k]);
+    }
 
     return 0;
 }
-void  quicksort(int array[],int n){
-
-    int pivote;
-    if(n>1){
-        pivote=particion(array,n);
-        quicksort(array,pivote);
-        quicksort(array+pivote+1,n-pivote-1);
-
-    }
-
-}
-//funcion para hacer la particion del array
-int particion(int array[], int n){
-    int p=0, i=1, d=n-1;
-    while(i<=d){
-        while((array[p]>array[i])&&(i<=d))
-               i++;
-        while((array[p]<=array[d])&&(i<=d))
-                   d--;
-        if(i<d)
-           intercambia(array+i,array+d);
-       // i++;d--;
-    }
-    intercambia(array,array+d);
-    return i-1;
-}
-void ImpArrInt(int a[], int n){
-    int i;
-    for(i=0;i<n;i++)
-        printf("a[%d]=%d\t",i,a[i]);
-    putchar('\n');
- }
- void LlenaArrIntAleaIter(int a[],int n){
-     int i;
-     for(i=0;i<n;i++)
-        a[i]=1+rand()%100;
-    };
-void intercambia(int *a, int *b){
-        int t=*a;
-        *a=*b;
-        *b=t;
-    }
-
-    //recibe un array y num de elementos y devuelve la posicion donde se enciuentra el nuemro menor
