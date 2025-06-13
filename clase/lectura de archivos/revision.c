@@ -1,77 +1,90 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<unistd.h>
 
 typedef int Entero;
-typedef float Real;
 typedef char* Cadena;
+typedef float Flotante;
 
-// Definición de la estructura Empleado
-typedef struct {
-    Cadena nombre;
-    Entero edad;
-    Real salario;
+typedef struct{
+      Cadena nombre;
+      Entero edad;
+      Flotante sueldo;
 } Empleado;
 
+void Burbuja(Empleado [],int);
+void BurbujaEdad(Empleado [],int);
+void Intercambia(Empleado*, Empleado*);
 int main(){
-    Empleado ventas[100];
-    FILE *archivo = fopen("empleados.txt", "r");
-    if (archivo == NULL) {
-        printf("No se pudo abrir el archivo.\n");
-        return 1;
-    }
 
-    // Lee 5 empleados del archivo
-    for(int i = 0; i < 5; i++){
-        ventas[i].nombre = (Cadena)malloc(50 * sizeof(char));
-        if (ventas[i].nombre == NULL) {
-            printf("No se pudo asignar memoria.\n");
-            // Libera la memoria ya reservada antes de salir
-            for(int j = 0; j < i; j++) free(ventas[j].nombre);
-            fclose(archivo);
-            return 1;
-        }
-        if (fscanf(archivo, "%49s %d %f", ventas[i].nombre, &ventas[i].edad, &ventas[i].salario) != 3) {
-            printf("Error al leer datos del archivo.\n");
-            free(ventas[i].nombre);
-            // Libera la memoria ya reservada antes de salir
-            for(int j = 0; j < i; j++) free(ventas[j].nombre);
-            fclose(archivo);
-            return 1;
-        }
-    }
+    Empleado v[100], e1;
+    FILE *ent=fopen("Empleados.txt","r");
+    FILE *sal=fopen("EmpleadosOrd.txt","w");
 
-    // Imprime los datos de los empleados leídos
-    for(int i = 0; i < 5; i++){
-        printf("%s tiene %d años y un salario de %.2f\n", ventas[i].nombre, ventas[i].edad, ventas[i].salario);
-    }
+    int i=0, n;
+    v[i].nombre=(Cadena)malloc(sizeof(char)*80);
+    while(fscanf(ent,"%s %d %f",v[i].nombre,&v[i].edad,&v[i].sueldo)!=EOF)
+        v[++i].nombre=(Cadena)malloc(sizeof(char)*80);
 
-    fclose(archivo);
-
-    // Ejemplo de uso de la estructura Empleado
-    Empleado empleado1;
-    printf("%lu\n", sizeof(Empleado)); // Imprime el tamaño de la estructura Empleado
-
-    empleado1.nombre = (Cadena)malloc(50 * sizeof(char));
-    if (empleado1.nombre == NULL) {
-        printf("No se pudo asignar memoria para empleado1.\n");
-        for(int i = 0; i < 5; i++) free(ventas[i].nombre);
-        return 1;
-    }
-    strcpy(empleado1.nombre, "Roony_Roldan");
-    empleado1.edad = 19;
-    empleado1.salario = 6;
-
-    printf("Nombre: %s\n", empleado1.nombre);
-    printf("Edad: %d\n", empleado1.edad);
-    printf("Salario: %.2f\n", empleado1.salario);
-
-    // Libera la memoria reservada para los nombres
-    for(int i = 0; i < 5; i++){
-        free(ventas[i].nombre);
-    }
-    free(empleado1.nombre);
+/*
+    Intercambia(v,v+1);
+    i=0;
+    printf("%s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+    i=1;
+    printf("%s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
 
     return 0;
+*/
+    puts("\n-----Antes de ordenar---------------");
+    //v[i]=v[i-1];
+    n=i;
+    for(i=0;i<n;i++)
+       printf("%s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+    fflush(stdin);
+    getchar();
+    puts("\n-----Despues de ordenar---------------");
+    //v[i]=v[i-1];
+    BurbujaEdad(v,n);
+    n=i;
+    for(i=0;i<n;i++){
+       printf("%s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+       fprintf(sal,"%s %d %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+    }
+    fclose(ent);
+    return 0;
+
 }
+
+void Intercambia(Empleado *a, Empleado *b){
+    Empleado t=*a;
+    *a=*b;
+    *b=t;
+}
+
+void Burbuja(Empleado v[], int n){
+   int i,j;
+   /*
+   for(i=0;i<n;i++)
+       printf("BBBBB %s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+   fflush(stdin);
+   getchar();
+*/
+   for(j=0;j<n;j++)
+      for(i=n-1;i>j;i--)
+         if(strcmp(v[i].nombre,v[i-1].nombre)<0)
+               Intercambia(&v[i],&v[i-1]);
+};
+
+void BurbujaEdad(Empleado v[], int n){
+   int i,j;
+   /*
+   for(i=0;i<n;i++)
+       printf("BBBBB %s tiene %d a&os y un sueldo de %.2f\n",v[i].nombre,v[i].edad,v[i].sueldo);
+   fflush(stdin);
+   getchar();
+*/
+   for(j=0;j<n;j++)
+      for(i=n-1;i>j;i--)
+         if(v[i].edad<v[i-1].edad)
+               Intercambia(&v[i],&v[i-1]);
+};
