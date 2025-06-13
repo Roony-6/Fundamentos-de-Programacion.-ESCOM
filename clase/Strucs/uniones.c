@@ -19,7 +19,8 @@ int main() {
     data.height = 5.2;
     printf("%.2f\n", data.height);
     data.firstLetter = 'N';
-    printf("%c", data.firstLetter);
+    printf("%c\n", data.firstLetter);
+    printf("%zu\n", sizeof(data));
 
     return 0;
 }
