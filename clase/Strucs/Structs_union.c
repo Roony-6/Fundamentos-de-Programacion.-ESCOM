@@ -18,7 +18,7 @@ int main(){
 
    struct alumno estudiante;
 
-   strcpy(estudiante.miembro.pal,"Fatima");
+   strcpy(estudiante.miembro.pal,"Fatima Jimenez");
    estudiante.grado=2;
    estudiante.clave='A';
    printf("%s\t%d\t%c\n",estudiante.miembro.pal,estudiante.grado,estudiante.clave);
@@ -32,6 +32,8 @@ int main(){
    estudiante.grado=2;
    estudiante.clave='A';
    printf("%.2f\t%d\t%c\n",estudiante.miembro.code,estudiante.grado,estudiante.clave);
+
+   printf("%s\t%d\t%c\n",estudiante.miembro.pal,estudiante.grado,estudiante.clave);
 
    return 0;
 
